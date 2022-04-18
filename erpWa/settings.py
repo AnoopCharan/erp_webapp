@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     # django libraries
     'debug_toolbar',
     # built
-    'home'
+    'home',
+    'api'
 ]
 
 MIDDLEWARE = [

@@ -26,31 +26,31 @@
 
         
         <form method="POST" action="{%url 'login'%}">
-        <!-- login section -->
-        <div class="row  justify-content-center" style="height: 30vh;">
-            <div class="col-lg-4 justify-content-center align-self-center text-center d-grid gap-2">
-                <div class="display-6 text-white">
-                    Welcome!, Please Login.
-                </div>
-                
-                    {%csrf_token%}
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
-                        <label for="floatingInput">Username</label>
+            <!-- login section -->
+            <div class="row  justify-content-center" style="height: 30vh;">
+                <div class="col-lg-4 justify-content-center align-self-center text-center d-grid gap-2">
+                    <div class="display-6 text-white">
+                        Welcome!, Please Login.
                     </div>
+                    
+                        {%csrf_token%}
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                            <label for="floatingInput">Username</label>
+                        </div>
 
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-                        <label for="floatingPassword">Password</label>
-                        <input type="hidden" name="next" value="{{next}}">
-                    </div>
-                    <div class="justify-content-center d-grid gap-2">
-                    <button type="submit" class="btn btn-warning btn-lg me-md-1 ">Login</button>
-                    <h5>Forgot Password?</h2>
-                    </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                            <label for="floatingPassword">Password</label>
+                            <input type="hidden" name="next" value="{{next}}">
+                        </div>
+                        <div class="justify-content-center d-grid gap-2">
+                        <button type="submit" class="btn btn-warning btn-lg me-md-1 ">Login</button>
+                        <h5>Forgot Password?</h2>
+                        </div>
+                </div>
             </div>
         </form>
-        </div>
         <!-- footer -->
         <div class="row align-items-center" style="height: 5vh;" >
             <a href="http://www.freepik.com" style="color: black" class="col-sm-6 text-start">Vector Graphics Designed by upklyak / Freepik</a>
