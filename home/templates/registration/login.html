@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- {%debug%} -->
+    
     {%if user.is_authenticated%}
         <meta http-equiv="refresh" content="0; URL={%url 'home:home'%}">
     {%endif%}
@@ -59,9 +61,16 @@
                 Link to GitHub repo</a>
         </div>
     </div>
-
-
+    
 </body>
+<script type="text/javascript">
+    
+    if ('{{form.errors}}') {
+        let errors = document.createElement('p');
+        errors.innerHTML = '{{form.non_field_errors}}';
+        alert(errors.innerText);
+    }
 
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </html>
