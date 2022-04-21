@@ -5,8 +5,10 @@ from api import views
 app_name = 'api'
 
 router = DefaultRouter()
-router.register('unitMeasure', viewset=views.unitMeasureMVS, basename='unitmeasure')
-
+router.register('unitMeasure', viewset=views.UnitMeasureMVS, basename='unitmeasure')
+router.register('status', viewset=views.StatusMVS, basename='status')
+router.register('people', viewset=views.PeopleMVS, basename='people')
+router.register('attachment', viewset=views.AttachmentMVS, basename='attachment')
 
 
 urlpatterns = [
