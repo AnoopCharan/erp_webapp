@@ -1,0 +1,14 @@
+{%extends 'home/base.html'%}
+{%block main_content%}
+    <div class="row row_filter">
+        {%include 'home/filters.html'%}
+        {%block filter%}
+        {%endblock filter %} 
+    </div>
+    <div class="row row_content"">
+        <div class="col-sm col_content">
+            {%block content%}
+            {%endblock content %}
+        </div>
+    </div>
+{%endblock main_content%}

@@ -1,0 +1,44 @@
+<div class="col-lg-12 d-grid  gap-2">
+    <div class="row">
+        <div class="col-lg-2">
+            <label for="fiPartName"><h4>Part Name</h4></label>
+        </div>
+        <div class="col-lg-5">
+            <input type="text" placeholder="" id="fiPartName">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+            <label for="fiPartType"><h4>Part Type</h4></label>
+        </div>
+        <div class="col-lg-5">
+            <input type="text" placeholder="" id="fiPartType">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+            <label for="fiOnOrder"><h4>Active Order</h4></label>
+        </div>
+        <div class="col-lg-5">
+            <input type="text" placeholder="" id="fiOnOrder">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2 d-grid">
+            <button class="btn btn-primary">Search</button>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="btn-group" role="group" aria-label="filter_buttons">                        
+                <a href="{%url 'home:home'%}" class="btn btn-warning" id="revert"  >Revert</a>
+                <button type="button" class="btn btn-dark" id="export">Export</button>
+            </div>
+        </div>
+        
+    </div>
+</div>
+{%load static%}
+<script src="{%static 'home/filter.js'%}"></script>

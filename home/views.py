@@ -12,9 +12,10 @@ from django.http import HttpResponseRedirect
 
 class homePage(LoginRequiredMixin, View):
     # redirect_field_name = 'redirect_to'
-    template_name = 'home/home.html'
+    template_name = 'home/dash.html'
     
     def get(self,request):
+        print(request.user)
         return render(request, template_name=self.template_name)
 
 
