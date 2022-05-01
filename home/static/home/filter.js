@@ -13,16 +13,13 @@ let i,j,k;
 
 function filter(){
 
-    fpn = document.getElementById('fi_part_name').value;
-    fpt = document.getElementById('fi_part_type').value;
-    foo = document.getElementById('fi_on_order').value;
+    fpn = document.getElementById('fiPartName').value;
+    fpt = document.getElementById('fiPartType').value;
+    foo = document.getElementById('fiOrder').value;
     console.log("fpn:",fpn,"fpt:", fpt,"foo:", foo);
     // console.log(fpt == "");
     for (i=0; i<= (tr.length); i++) {
-        // console.log(i, "|", tpn[i].innerHTML)
-        // tr[i].style.display = "none";
-        // console.log("i:", i, tid[i].innerHTML, tpn[i].innerHTML, fpn, "::", String(tpn[i].innerHTML.toLowerCase()).includes(fpn.toLowerCase()))
-        // console.log(tr[i], i)
+        
         if (fpn != ""){
             if ( String(tpn[i].innerHTML.toLowerCase()).includes(fpn.toLowerCase()) == false ) {
                 // console.log(i)
@@ -40,12 +37,18 @@ function filter(){
         }
 
         if (foo == "1"){
-            console.log((too[i].innerHTML) == "")
-            if((too[i].innerHTML) == ""){
+            
+            if((too[i].innerHTML.trim()) == ""){
                 tr[i].style.display = "none";
             }
         }
-        // console.log(i)
+
+        if (foo == "0"){
+            
+            if((too[i].innerHTML.trim()) != ""){
+                tr[i].style.display = "none";
+            }
+        }
         
     }
 

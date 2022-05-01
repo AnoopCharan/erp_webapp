@@ -12,40 +12,26 @@ body {
     box-sizing: border-box;
 }
 
-.table-dash table {
-    width: 100%;
-    /* background-color:#555b63 ; */
-    height:100% ;
-    min-height: 100%;
 
-    
-    }
-
-.table-dash table thead {
+table thead {
     position: sticky;
     top: 0;
-    border-bottom: 2px solid #ccc;
-    background-color:white ;
-    overflow-x:auto
+    border-bottom: 2px solid rgb(0, 0, 0);
+    background-color:rgb(255, 255, 255) ;
     }
-
-
-
+    
 .container_main {
     /* background-color:rgb(138, 107, 22) ; */
     min-height: 100vh;
     height: 100vh;
 }
 
-.module_name {
-    
-    background-color: aliceblue;
-}
+
 
 .row_1 {
     /* background-image: linear-gradient(to right, #000000 0%, #273641 50%); */
     background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
-    min-height: 5vh;
+    height: 5vh;
 }
 
 
@@ -54,25 +40,9 @@ body {
     /* background-color: rgb(240, 38, 82); */
     background-color: rgb(222, 231, 245);
 
-    min-height: 95vh;
+    height: 95vh;
     padding: 1rem;
 }
-
-
-
-.col_content {
-    max-height: 100%;
-    min-height: 100%;
-    height: 100%;
-    margin: 1rem;
-    padding-left: 1rem;
-    overflow: auto;
-    background-color: white;
-    box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 0.5vh;
-
-}
-
 
 .row_filter {
     background-color: white;
@@ -83,6 +53,29 @@ body {
     margin: 1rem;
     
 }
+
+.row_content {
+    /* background-color: darkgrey; */
+    max-height: 80%;
+    /* margin: 0.5rem; */
+    padding: 0.5rem;
+}
+
+
+
+.col_content {
+    height: 70vh;
+    margin: 1rem;
+    padding:0;
+    overflow: auto;
+    background-color: white;
+    box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5vh;
+
+}
+
+
+
 
 .fixed-left, .fixed-right {
   position: fixed;
@@ -97,28 +90,17 @@ body {
     min-height: 100%;
     height: 100%;
     box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /* border-radius: 0.5vh; */
-    /* background-color:   rgb(93,115,136); */
-    /* background: linear-gradient(to top, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
-    background-blend-mode: multiply,multiply;
-    background-image: linear-gradient(to right, #434343 0%, black 100%); */
-
 
 }
 .fixed-right {
   right: 0;
   /* background: purple; */
   width: calc(100% - 15rem);
+  max-height: 100%;
   
   
 }
 
-.row_content {
-    /* background-color: darkgrey; */
-    min-height: 80%;
-    /* margin: 0.5rem; */
-    padding: 0.5rem;
-}
 
 .accordion {
     width: 100%;

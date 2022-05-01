@@ -8,6 +8,7 @@ from api import views
 app_name = 'api'
 
 router = DefaultRouter()
+
 router.register('unitmeasure', viewset=views.UnitMeasureMVS, basename='unitmeasure')
 router.register('status', viewset=views.StatusMVS, basename='status')
 router.register('people', viewset=views.PeopleMVS, basename='people')

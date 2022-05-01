@@ -189,3 +189,4 @@ REST_FRAMEWORK = {
 
 # Media URL
 MEDIA_URL = "/media/"
+

@@ -1,6 +1,7 @@
-from traceback import print_tb
 from django.shortcuts import render
+from django.db.models.aggregates import Max
 from rest_framework.viewsets import ModelViewSet
+from rest_framework import status
 from api import models, serializers
 from rest_framework.response import Response
 from rest_framework.status import HTTP_201_CREATED, HTTP_500_INTERNAL_SERVER_ERROR
@@ -140,50 +141,55 @@ class ReceivingMVS(ModelViewSet):
 class Dash(ModelViewSet):
     # modified method to get custom queryset for dashboard table in landing page
     # added filtering fuctionality using basic url parameters and ORM filtering
-    serializer_class= serializers.MinimumStockSerializer 
+    serializer_class= serializers.DashSerializer 
     
     def get_queryset(self):
         sql="""
-                SELECT * 
-                FROM
-                (SELECT *, pid_1 AS id
-                FROM 
-                (SELECT pid_1,minimumStock AS min_stock, currentStock AS current_stock, led AS expected_by, totord AS on_order, crecent AS recent_update  
-                FROM
-                    (SELECT * 
-                        FROM
-                        (SELECT * 
-                        FROM
-                        (SELECT part_id AS pid_1, max(lastUpdateDate) AS crecent
-                        FROM api_MinimumStock
-                        group by part_id) AS t 
-                    JOIN api_MinimumStock AS m ON m.part_id = t.pid_1 and t.crecent = m.lastUpdateDate ) AS t1,
-                        (SELECT * 
-                        FROM
-                        (SELECT part_id AS pid_2, max(lastUpdateDate) AS recent
-                        FROM stock_stock_current
-                        group by part_id) AS ta 
-                    JOIN stock_stock_current AS mi ON mi.part_id = ta.pid_2 and ta.recent = mi.lastUpdateDate ) AS t2
-                    WHERE t1.pid_1= t2.pid_2) AS b1
-                left JOIN 
-                    (SELECT part_id AS pid_3, max(expected_by_date) AS led, sum(quantity_ordered) AS totord
-                    FROM orders_orders_table
-                    group by part_id) AS b2 
-                ON b1.pid_1 = b2.pid_3) out1
-
-                JOIN 
-
-                (SELECT p.id AS pid_0 , part_name, part_type FROM stock_stock_parts AS p
-                JOIN stock_part_category AS c 
-                ON p.part_type_id = c.id
-                ) AS out2
-
-                ON out2.pid_0 = out1.pid_1
-
-                ORDER BY id ASC) AS  ft
+                SELECT * FROM
+                    (SELECT parts_order.id, parts_order.name, ac.category, parts_order.onOrder FROM
+                        (SELECT * FROM api_part AS ap
+                        LEFT JOIN (SELECT part_id,
+                                SUM(quantity) AS onOrder 
+                                FROM api_order as ao 
+                                GROUP BY part_id 
+                                ORDER BY part_id) AS oq
+                        ON ap.id = oq.part_id ORDER BY ap.id) as parts_order
+                    LEFT JOIN api_partcategory AS ac 
+                    ON ac.id = parts_order.category_id) part_category_order
+                LEFT JOIN 
+                    (SELECT cs.part_id, cs."currentStock", ms."minimumStock" FROM
+                        (SELECT ac.part_id, ac."currentStock", csltd.latestdate FROM
+                            (SELECT part_id, MAX("lastUpdateDate") AS latestdate FROM api_currentstock
+                            GROUP BY part_id) AS csltd
+                        JOIN api_currentstock as ac ON ac.part_id = csltd.part_id 
+                        WHERE ac."lastUpdateDate" = csltd.latestdate ORDER BY ac.part_id) AS cs
+                    JOIN 
+                        (SELECT am.part_id, am."minimumStock", msltd.latestdate FROM
+                            (SELECT part_id, MAX("lastUpdateDate") AS latestdate FROM api_minimumstock
+                            GROUP BY part_id) AS msltd
+                        JOIN api_minimumstock as am ON am.part_id = msltd.part_id 
+                        WHERE am."lastUpdateDate" = msltd.latestdate ORDER BY am.part_id) AS ms
+                    ON
+                    cs.part_id = ms.part_id) current_min
+                ON
+                current_min.part_id = part_category_order.id
                 """
         
-        queryset= models.Part.objects.raw(sql)
-       
-
+        queryset= models.PartCategory.objects.raw(raw_query=sql)
         return queryset
+
+    def create(self, request):
+        response = {'message': 'Create function is not offered in this path.'}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)
+
+    def update(self, request, pk=None):
+        response = {'message': 'Update function is not offered in this path.'}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)
+
+    def partial_update(self, request, pk=None):
+        response = {'message': 'Update function is not offered in this path.'}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)
+
+    def destroy(self, request, pk=None):
+        response = {'message': 'Delete function is not offered in this path.'}
+        return Response(response, status=status.HTTP_403_FORBIDDEN)

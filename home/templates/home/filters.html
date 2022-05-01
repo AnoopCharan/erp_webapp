@@ -13,7 +13,13 @@
             <label for="fiPartType"><h4>Part Type</h4></label>
         </div>
         <div class="col-lg-5">
-            <input type="text" placeholder="" id="fiPartType">
+            
+            <select name="part_type" id="fiPartType">
+                <option value="" disabled selected hidden> </option>
+                {%for type in types%}
+                <option value="{{type.category}}">{{type.category | capfirst}}</option>
+                {%endfor%}
+            </select>
         </div>
     </div>
 
@@ -22,13 +28,17 @@
             <label for="fiOnOrder"><h4>Active Order</h4></label>
         </div>
         <div class="col-lg-5">
-            <input type="text" placeholder="" id="fiOnOrder">
+            <select name="on_order" id="fiOrder">
+                <option value="0" disabled selected hidden></option>
+                <option value="1">YES</option>
+                <option value="0">NO</option>
+            </select>
         </div>
     </div>
 
     <div class="row">
         <div class="col-lg-2 d-grid">
-            <button class="btn btn-primary">Search</button>
+            <button class="btn btn-primary" onclick="filter()">Search</button>
         </div>
 
         <div class="col-lg-5">

@@ -5,10 +5,14 @@
         {%block filter%}
         {%endblock filter %} 
     </div>
-    <div class="row row_content"">
+    <div class="row row_content">
         <div class="col-sm col_content">
             {%block content%}
             {%endblock content %}
+            
+                {%include 'home/dashTable.html'%}
+
+            
         </div>
     </div>
 {%endblock main_content%}

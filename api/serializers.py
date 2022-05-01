@@ -1,4 +1,4 @@
-from rest_framework.serializers import HyperlinkedModelSerializer, HyperlinkedIdentityField
+from rest_framework.serializers import HyperlinkedModelSerializer, Serializer, IntegerField, CharField
 from api import models
 
 class UnitMeasureSerializer(HyperlinkedModelSerializer):
@@ -107,3 +107,11 @@ class ReceivingSerializer(HyperlinkedModelSerializer):
             'orderItem':{'view_name':'api:order-detail'},
             'attachment':{'view_name':'api:attachment-detail'}
         }
+
+class DashSerializer(Serializer):
+    id = IntegerField()
+    name = CharField()
+    category = CharField()
+    onorder = IntegerField()
+    currentStock = IntegerField()
+    minimumStock = IntegerField()
