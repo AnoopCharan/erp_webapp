@@ -22,7 +22,7 @@ from rest_framework.documentation import include_docs_urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/',include('django.contrib.auth.urls')),
-    path('', include('home.urls')),
+    path('', include('frontend.urls')),
     path('api/', include('api.urls')),
     path('api/docs', include_docs_urls(title="ERP web app API"))
 ]

@@ -43,9 +43,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
-    # built
-    'home',
-    'api'
+    # api
+    'api',
+
+    # frontend
+    'frontend',
+
 ]
 
 MIDDLEWARE = [

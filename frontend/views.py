@@ -27,32 +27,40 @@ class homePage(LoginRequiredMixin, View):
     def get(self,request):
 
         apiHeader = get_token(user= request.user, asHeader=True)
-        dashGet = requests.get(url=request.build_absolute_uri(self.dashEndpoint), headers=apiHeader)
-        dashData = dashGet.json()
-        typeGet = requests.get(url=request.build_absolute_uri(self.typeEndpoint), headers=apiHeader)
-        typeData = typeGet.json()
-
-        data ={'dash':dashData, 'types':typeData, 'module':'Dashboard'}
-        return render(request, template_name=self.template_name, context=data)
-
+             
+        # Get dash endpoint data
         try:
             dashGet = requests.get(url=request.build_absolute_uri(self.dashEndpoint), headers=apiHeader)
-            dashData = dashGet.json()
-            typeGet = requests.get(url=request.build_absolute_uri(self.typeEndpoint), headers=apiHeader)
-            typeData = typeGet.json()
+            dashGet.raise_for_status()
+            
 
-            data ={'dash':dashData, 'type':typeData}
-            return render(request, template_name=self.template_name, context=data)
-
-        except:
-            return HttpResponse(content=f"""<h1>{dashGet.request} : RESPONSE {dashGet.status_code}, {dashGet.reason} </h1>
-                                            <h1>{typeGet.request} : RESPONSE {typeGet.status_code}, {typeGet.reason} </h1>""")
+        except requests.exceptions.HTTPError as e:
+            return HttpResponse(content=f"""<h1>Something went wrong</h1>
+                                            <h2>CODE: {dashGet.status_code}  {dashGet.reason}</h2>
+                                            <h2>{e.response.text}</h2>
+                                            """)
         
+        # Get types endpoint data
+        try:
+            typeGet = requests.get(url=request.build_absolute_uri(self.typeEndpoint), headers=apiHeader)
+            typeGet.raise_for_status()
+            
+
+        except requests.exceptions.HTTPError as e:
+            return HttpResponse(content=f"""<h1>Something went wrong</h1>
+                                            <h2>CODE: {typeGet.status_code}  {typeGet.reason}</h2>
+                                            <h2>{e.response.text}</h2>
+                                            """)
+
+        data ={'dash':dashGet.json(), 'types':typeGet.json(), 'module':'Dashboard'}
+        
+        return render(request, template_name=self.template_name, context=data)
+
 
 
 
 def logoutRedirect(request):
-    print(request)
+    # print(request)
     logout(request=request)
     
     return HttpResponseRedirect(redirect_to=reverse('home:home'))

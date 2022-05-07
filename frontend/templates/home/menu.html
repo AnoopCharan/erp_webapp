@@ -1,7 +1,7 @@
 <div class="accordion w-100" id="menu_accordion"  >
     <div class="accordion-item">
         <h2 class="accordion-header" id="accordion_home">
-          <a href="{%url 'home:home'%}" style="text-decoration: none;">
+          <a href="{%url 'frontend:home'%}" style="text-decoration: none;">
             <div class="d-grid gap-2" data-bs-toggle="collapse">
                 <button class="btn btn-success" type="button"><strong>Home</strong></button>
             </div>
@@ -136,7 +136,7 @@
                 <div class="h4 text-wrap text-center">{{request.user.first_name}}</div>
                 <div><a href="#"><button class="btn btn-outline-primary w-100">Details</button></a></div>
                 <div><a href="#"><button class="btn btn-outline-primary w-100">Admin</button></a></div>
-                <div><a href="{%url 'home:logoutRedirect'%}"><button class="btn btn-danger w-100">LogOut</button></a></div>
+                <div><a href="{%url 'frontend:logoutRedirect'%}"><button class="btn btn-danger w-100">LogOut</button></a></div>
                 
             </div>
         </div>

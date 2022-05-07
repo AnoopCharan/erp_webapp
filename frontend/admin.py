@@ -2,4 +2,4 @@ from django.contrib import admin
 
 # Register your models here.
 
-admin.register('home')
+admin.register('frontend')

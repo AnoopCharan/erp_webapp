@@ -1,10 +1,10 @@
 from django.urls import path
 from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
-from home.views import homePage, logoutRedirect
+from frontend.views import homePage, logoutRedirect
 
 
-app_name = 'home'
+app_name = 'frontend'
 
 urlpatterns = [
     path('', homePage.as_view(), name='home'),
