@@ -1,5 +1,5 @@
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <label for="fiPartName"><h4>Part Name</h4></label>
         </div>
         <div class="col-sm-5">
@@ -8,7 +8,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <label for="fiPartType"><h4>Part Type</h4></label>
         </div>
         <div class="col-sm-5">
@@ -22,31 +22,31 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-sm-2">
-            <label for="fiOnOrder"><h4>Active Order</h4></label>
-        </div>
-        <div class="col-sm-5">
-            <select name="on_order" id="fiOrder">
-                <option value="0" disabled selected hidden></option>
-                <option value="1">YES</option>
-                <option value="0">NO</option>
-            </select>
-        </div>
-    </div>
+   
 
     <div class="row">
         <div class="col-sm-2 d-grid">
-            <button class="btn btn-primary" onclick="filter()">Search</button>
+            <button class="btn btn-outline-primary" onclick="filter()">Search</button>
         </div>
 
         <div class="col-sm-5">
             <div class="btn-group" role="group" aria-label="filter_buttons">                        
-                <a href="{%url 'frontend:home'%}" class="btn btn-warning" id="revert"  >Revert</a>
-                <button type="button" class="btn btn-dark" id="export">Export</button>
+                <a href="{%url 'frontend:currentHome'%}" class="btn btn-outline-warning" id="revert"  >Revert</a>
+                <button type="button" class="btn btn-outline-dark" id="export">Export</button>
             </div>
         </div>
+
+        <div class="col-sm-5">
+            <div class="btn-group" role="group" aria-label="update_buttons">
+                <button class="btn btn-primary" onclick="update()">Update</button>
+                <button class="btn btn-success">Commit</button>
+                <button class="btn btn-warning" onclick="cell_clear()">Clear</button>
+
+            </div>
+        </div>
+
+        
         
     </div>
 {%load static%}
-<script src="{%static 'base/filter.js'%}"></script>
+<script src="{%static 'current/filter.js'%}"></script>

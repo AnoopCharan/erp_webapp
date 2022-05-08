@@ -1,9 +1,9 @@
-{%extends 'home/base.html'%}
+{%extends 'base/base.html'%}
 {%block main_content%}
     <div class="row row_filter">
-        {%include 'home/filters.html'%}
-        {%block filter%}
-        {%endblock filter %} 
+        <div class="col-sm col_filter d-grid gap-2">
+            {%include 'home/filters.html'%}
+        </div>
     </div>
     <div class="row row_content">
         <div class="col-sm col_content">

@@ -86,6 +86,17 @@ table thead {
 
 }
 
+.col_upload {
+
+    background-color: white;
+    box-shadow: 0px 2px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0.5vh;
+    height: fit-content;
+    padding: 1rem;
+    overflow: auto;
+    margin: 1rem;
+
+}
 
 
 
