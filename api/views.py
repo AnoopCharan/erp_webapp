@@ -99,6 +99,27 @@ class MinimumStockMVS(ModelViewSet):
         'lastUpdateDate': ['exact','gt','lt','gte','lte']
     }
 
+    def create(self, request, *args, **kwargs):
+        # type checking of incoming request data to support multiple posting to API.
+        # For single instance posting, incoming request.data is of type django queryset (Dict)
+        # for multiple posting, incoming request.data type is array of dicts. !! add many=True in serializer line
+
+        if all([isinstance(request.data, list), len(request.data) ==1]): 
+            post_slr= serializers.MinimumStockSerializer(data=request.data[0], context={"request":request})
+        
+        elif all([isinstance(request.data, list), len(request.data) > 1]): 
+            post_slr = serializers.MinimumStockSerializer(data=request.data, many=True, context={'request':request})
+
+        else:
+            post_slr= serializers.MinimumStockSerializer(data=request.data, context={"request":request})
+
+
+        if post_slr.is_valid():
+            post_slr.save()
+            return Response(data= post_slr.data, status=status.HTTP_201_CREATED)
+        print(post_slr.errors)
+        return Response(data=post_slr.errors, status= status.HTTP_400_BAD_REQUEST)
+
 class CurrentStockMVS(ModelViewSet):
     queryset = models.CurrentStock.objects.all()
     serializer_class = serializers.CurrentStockSerializer
@@ -109,6 +130,27 @@ class CurrentStockMVS(ModelViewSet):
         'currentStock': ['exact','gt','lt','gte','lte'],
         'lastUpdateDate': ['exact','gt','lt','gte','lte']
     }
+
+    def create(self, request, *args, **kwargs):
+        # type checking of incoming request data to support multiple posting to API.
+        # For single instance posting, incoming request.data is of type django queryset (Dict)
+        # for multiple posting, incoming request.data type is array of dicts. !! add many=True in serializer line
+
+        if all([isinstance(request.data, list), len(request.data) ==1]): 
+            post_slr= serializers.CurrentStockSerializer(data=request.data[0], context={"request":request})
+        
+        elif all([isinstance(request.data, list), len(request.data) > 1]): 
+            post_slr = serializers.CurrentStockSerializer(data=request.data, many=True, context={'request':request})
+
+        else:
+            post_slr= serializers.CurrentStockSerializer(data=request.data, context={"request":request})
+
+
+        if post_slr.is_valid():
+            post_slr.save()
+            return Response(data= post_slr.data, status=status.HTTP_201_CREATED)
+        print(post_slr.errors)
+        return Response(data=post_slr.errors, status= status.HTTP_400_BAD_REQUEST)
 
 class OrderMVS(ModelViewSet):
     queryset = models.Order.objects.all()

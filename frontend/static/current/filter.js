@@ -46,8 +46,6 @@ function filter_revert(){
     }
 }
 
-// cs in update, clear stands for commited stock from page
-// function to switch the table with data to table with mix of data and input cells
 function update() {
     // its better to use class, than id  when manupulation of multiple similar elements is needed
 // define lets x and y for t_current_stock class and t_cs_editable class
@@ -63,8 +61,6 @@ function update() {
     }
 }
 
-// function to switch table with input cells to just display data
-// Clears the data inputs in the input cells and reverts back to default display.
 function cell_clear() {
     console.log('clear() called')
     let x = document.getElementsByClassName("t_current_stock");
@@ -88,6 +84,22 @@ function file_check() {
         form.submit();
     }
     else {
-        alert('File not selected!')
+        alert('File not selected!');
     }
+}
+
+function update_check() {
+    let quantity = document.getElementsByClassName("t_cs_editable");
+    let form = document.getElementById("current_update");
+    let i=0;
+
+    for (i; i< quantity.length; i++) {
+
+        if (quantity[i].value !== "") {
+            return form.submit();
+            
+        }
+    }
+
+    return alert("Please enter new quantity before commiting!");
 }

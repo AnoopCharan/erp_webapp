@@ -91,3 +91,19 @@ function file_check() {
         alert('File not selected!')
     }
 }
+
+function update_check() {
+    let quantity = document.getElementsByClassName("t_ms_editable");
+    let form = document.getElementById("min_update");
+    let i=0;
+
+    for (i; i< quantity.length; i++) {
+
+        if (quantity[i].value !== "") {
+            return form.submit();
+            
+        }
+    }
+
+    return alert("Please enter new quantity before commiting!");
+}

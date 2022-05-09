@@ -40,3 +40,20 @@ def api_get(url, request, render = None, post_content_type:str =None):
                                         <h2>CODE: {apiGet.status_code}  {apiGet.reason}</h2>
                                         <h2>{e.response.text}</h2>
                                         """)
+
+def api_post(url, request, data, render = None, post_content_type:str =None):
+
+
+    try:
+        apiPost = requests.post(url=url, headers=api_auth(user=request.user, asHeader=True, content_type=post_content_type), data= data)
+        apiPost.raise_for_status()
+        
+        if render is not None:
+            return render
+        return apiPost
+
+    except requests.exceptions.HTTPError as e:
+        return HttpResponse(content=f"""<h1>Something went wrong</h1>
+                                        <h2>CODE: {apiPost.status_code}  {apiPost.reason}</h2>
+                                        <h2>{e.response.text}</h2>
+                                        """)
