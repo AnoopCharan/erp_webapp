@@ -1,7 +1,7 @@
 <div class="row bg-white box_shadow p-3">
     <div class="display-5 p-2 text-center"> Upload from a file </div>
     
-    <form action="" method="post" id="file_form" class="d-grid gap-3 p-3" enctype="multipart/form-data">
+    <form action="{%url 'frontend:minUpload'%}" method="post" id="file_form" class="d-grid gap-3 p-3" enctype="multipart/form-data">
         {%csrf_token%}
         <div class="row g-3 pt-3 align-items-center">
             <div class="col-lg-4">

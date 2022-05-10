@@ -10,8 +10,12 @@ urlpatterns = [
     path('', views.HomePage.as_view(), name='home'),
     path('current', views.CurrentStock.as_view(), name='currentHome'),
     path('current/update', views.CurrentStockUpdate.as_view(), name='currentUpdate'),
+    path('current/upload', views.CurrentStockUpload.as_view(), name='currentUpload'),
     path('min', views.MinimumStock.as_view(), name='minHome'),
     path('min/update', views.MinStockUpdate.as_view(), name='minUpdate'),
+    path('min/upload', views.MinimumStockUpload.as_view(), name='minUpload'),
     path('logout', views.logoutRedirect, name='logoutRedirect'),
-    path('test',(TemplateView.as_view(template_name='registration/login_test.html')), name='test')
+    path('test',(TemplateView.as_view(template_name='registration/login_test.html')), name='test'),
+
+    path('workingonit', TemplateView.as_view(template_name='inprogress/underWork.html'), name='inprog')
 ]

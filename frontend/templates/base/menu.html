@@ -39,9 +39,9 @@
         <div class="accordion-body-fluid p-2">
             <div class="d-grid gap-2">
                 
-                <div><a href="#"><button class="btn btn-outline-primary w-100">Projects</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">Shipment</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">Allocations</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">Projects</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">Shipment</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">Allocations</button></a></div>
                 
             </div>
         </div>
@@ -57,9 +57,9 @@
         <div class="accordion-body-fluid p-2">
             <div class="d-grid gap-2">
                 
-                <div><a href="#"><button class="btn btn-outline-primary w-100">Utilization</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">Expected</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">Forecast</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">Utilization</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">Expected</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">Forecast</button></a></div>
                 
             </div>
         </div>
@@ -76,16 +76,16 @@
         <div class="accordion-body-fluid p-2">
             <div class="d-grid gap-2">
                 
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
                 
             </div>
         </div>
       </div>
     </div> -->
 
-    <div class="accordion-item">
+    <!-- <div class="accordion-item">
       <h2 class="accordion-header" id="headingFive">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
             <strong>Reports</strong>
@@ -95,14 +95,14 @@
         <div class="accordion-body-fluid p-2">
             <div class="d-grid gap-2">
                 
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
                 
             </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- <div class="accordion-item">
       <h2 class="accordion-header" id="headingSix">
@@ -114,9 +114,9 @@
         <div class="accordion-body-fluid p-2">
             <div class="d-grid gap-2">
                 
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
+                <div><a href="{%url 'frontend:inprog'%}"><button class="btn btn-outline-primary w-100">tbd</button></a></div>
                 
             </div>
         </div>
@@ -135,7 +135,7 @@
                 <div class="h4 text-wrap text-center">Welcome!!</div>
                 <div class="h4 text-wrap text-center">{{request.user.first_name}}</div>
                 <div><a href="#"><button class="btn btn-outline-primary w-100">Details</button></a></div>
-                <div><a href="#"><button class="btn btn-outline-primary w-100">Admin</button></a></div>
+                <div><a href="{% url 'admin:index' %}"><button class="btn btn-outline-primary w-100">Admin</button></a></div>
                 <div><a href="{%url 'frontend:logoutRedirect'%}"><button class="btn btn-danger w-100">LogOut</button></a></div>
                 
             </div>

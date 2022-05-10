@@ -1,6 +1,6 @@
-
+from turtle import pos
+from utils.utils import csvread
 import json
-from urllib import response
 from django.urls import reverse, resolve, reverse_lazy
 # from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
@@ -9,8 +9,7 @@ from django.views import View
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
 from utils.apiUtils import api_get, api_auth, api_post
-import requests
-from rest_framework import status
+
 
 
 # Create your views here.
@@ -109,6 +108,32 @@ class CurrentStockUpdate(LoginRequiredMixin, View):
 
         return redirect(to=reverse_lazy('frontend:currentHome'))
 
+class CurrentStockUpload(LoginRequiredMixin, View):
+
+    def post(self,request):
+        
+        reader = csvread(request=request,form_handle='file')
+        current_post = []
+        for row in reader:
+            if row[2] != "":
+                current_post.append(
+                {
+                    "part": row[0],
+                    "currentStock": row[2]
+                }
+                )
+        current_post.pop(0)
+        # print(json.dumps(current_post))
+        
+        api = request.build_absolute_uri(reverse_lazy('api:currentstock-list'))
+        
+        apiPost = api_post(url= api, request=request, data= json.dumps(current_post), post_content_type='json')
+
+        if isinstance(apiPost, HttpResponse):
+            return apiPost
+
+        return redirect(to=reverse_lazy('frontend:currentHome'))
+
 
 class MinimumStock(LoginRequiredMixin, View):
     template_name = 'min/min.html'
@@ -167,6 +192,32 @@ class MinStockUpdate(LoginRequiredMixin, View):
             post_content_type='json'
             )
         
+        if isinstance(apiPost, HttpResponse):
+            return apiPost
+
+        return redirect(to=reverse_lazy('frontend:minHome'))
+
+class MinimumStockUpload(LoginRequiredMixin, View):
+
+    def post(self,request):
+        
+        reader = csvread(request=request,form_handle='file')
+        current_post = []
+        for row in reader:
+            if row[2] != "":
+                current_post.append(
+                {
+                    "part": row[0],
+                    "minimumStock": row[2]
+                }
+                )
+        current_post.pop(0)
+        # print(json.dumps(current_post))
+        
+        api = request.build_absolute_uri(reverse_lazy('api:minstock-list'))
+        
+        apiPost = api_post(url= api, request=request, data= json.dumps(current_post), post_content_type='json')
+
         if isinstance(apiPost, HttpResponse):
             return apiPost
 
