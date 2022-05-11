@@ -14,7 +14,11 @@ from utils.apiUtils import api_get, api_auth, api_post
 
 # Create your views here.
 
-
+def logoutRedirect(request):
+    # print(request)
+    logout(request=request)
+    
+    return HttpResponseRedirect(redirect_to=reverse('frontend:home'))
 
 # Homepage
 
@@ -224,8 +228,56 @@ class MinimumStockUpload(LoginRequiredMixin, View):
         return redirect(to=reverse_lazy('frontend:minHome'))
 
 
-def logoutRedirect(request):
-    # print(request)
-    logout(request=request)
-    
-    return HttpResponseRedirect(redirect_to=reverse('frontend:home'))
+class Purchasing(LoginRequiredMixin, View):
+    template_name= 'purchasing/main.html'
+    dashEndpoint = reverse_lazy('api:dash-list')
+    typeEndpoint = reverse_lazy('api:partcategory-list')
+    orderEndpoint = reverse_lazy('api:order-list')
+
+    def get(self, request):
+        dashUrl = request.build_absolute_uri(self.dashEndpoint)
+        dashGet = api_get(url= dashUrl, request= request)
+        print(dashGet.status_code)
+
+        typeUrl = request.build_absolute_uri(self.typeEndpoint)
+        typeGet = api_get(url=typeUrl, request=request)
+
+        orderUrl = request.build_absolute_uri(self.orderEndpoint)
+        orderGet = api_get(url=orderUrl, request=request)
+
+        if isinstance(dashGet, HttpResponse):
+            return dashGet
+        if isinstance(typeGet, HttpResponse):
+            return typeGet
+        if isinstance(orderGet, HttpResponse):
+            return orderGet
+
+        orderData = orderGet.json()
+
+        
+        total = len(orderData)
+        delivered = 0
+        undelivered =0
+        for order in orderData:
+            if order['dateDelivered']:
+                delivered +=1
+            elif order['dateDelivered'] is None:
+                undelivered +=1
+        
+        orderSummary={
+            'total' : total,
+            'delivered' : delivered,
+            'undelivered' : undelivered
+        }
+
+
+        data ={'dash':dashGet.json(), 'types':typeGet.json(), 'summary':orderSummary, 'module':'Purchasing'}
+        
+        return render(request, template_name=self.template_name, context=data)
+
+class PurchasingCreate(LoginRequiredMixin,View):
+    template_name = 'purchasing/createMain.html'
+
+    def get(self,request):
+
+        return render(request=request, template_name= self.template_name)
